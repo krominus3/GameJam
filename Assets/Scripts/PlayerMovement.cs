@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D body;
+    Animator animator;
 
     float horizontal;
     float vertical;
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -25,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         // Gives a value between -1 and 1
         horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+
+        animator.SetBool("isWalk", true ? (horizontal != 0 && vertical != 0) : false);
     }
 
     void FixedUpdate()
