@@ -23,11 +23,12 @@ public class PlayerInteract : MonoBehaviour
             print(hit);
         }
 
-        if (hits.Length > 0)
+        if (hits.Length > 1)
         {
             print("see object");
+            print(hits[1]);
 
-            if (hits[0].TryGetComponent(out IInteractable interactable))
+            if (hits[1].TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
             }

@@ -10,7 +10,7 @@ public class PlayerPhotoMode : MonoBehaviour
     
 
 
-    private bool goodPhoto = false;
+    public bool goodPhoto = false;
     private bool isPhotoMode = false;
     private Animator animator;
     private Transform playerTransform;

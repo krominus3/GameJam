@@ -19,7 +19,7 @@ public class DataManager : MonoBehaviour
             npcNewState = GameManager.Instance.npcNewState;
             dayNumber = GameManager.Instance.dayNumber;
         }
-
+        Debug.Log("Данные в игре! npcOldState: " + npcOldState + ", npcNewState: " + npcNewState + ", dayNumber: " + dayNumber);
 
         // Проверяем, существует ли уже экземпляр. Если нет - создаем его.
         if (Instance == null)
@@ -36,22 +36,26 @@ public class DataManager : MonoBehaviour
     // Метод для сохранения данных
     public void SaveData()
     {
-        PlayerPrefs.SetInt("npcOldState", npcOldState);
-        PlayerPrefs.SetInt("npcNewState", npcNewState);
-        PlayerPrefs.SetInt("dayNumber", dayNumber);
+        PlayerPrefs.SetInt("npcOldState", GameManager.Instance.npcOldState);
+        PlayerPrefs.SetInt("npcNewState", GameManager.Instance.npcNewState);
+        PlayerPrefs.SetInt("dayNumber", GameManager.Instance.dayNumber);
 
         PlayerPrefs.Save();  // Сохраняем изменения
-        Debug.Log("Данные сохранены!");
+        Debug.Log("Данные сохранены! npcOldState: " + GameManager.Instance.npcOldState
+                                + ", npcNewState: " + GameManager.Instance.npcNewState
+                                + ", dayNumber: " + GameManager.Instance.dayNumber);
     }
 
     // Метод для загрузки данных
     public void LoadData()
     {
-        npcOldState = PlayerPrefs.GetInt("npcOldState", 0);  // 0 — дефолтное значение, если ключа нет
-        npcNewState = PlayerPrefs.GetInt("npcNewState", 0);
-        dayNumber = PlayerPrefs.GetInt("dayNumber", 0);
+        GameManager.Instance.npcOldState = PlayerPrefs.GetInt("npcOldState", 0);  // 0 — дефолтное значение, если ключа нет
+        GameManager.Instance.npcNewState = PlayerPrefs.GetInt("npcNewState", 0);
+        GameManager.Instance.dayNumber = PlayerPrefs.GetInt("dayNumber", 0);
 
-        Debug.Log("Данные загружены! npcOldState: " + npcOldState + ", npcNewState: " + npcNewState + ", dayNumber: " + dayNumber);
+        Debug.Log("Данные загружены! npcOldState: " + GameManager.Instance.npcOldState
+                                + ", npcNewState: " + GameManager.Instance.npcNewState
+                                + ", dayNumber: " + GameManager.Instance.dayNumber);
     }
 
     // Метод для удаления всех данных
@@ -59,6 +63,9 @@ public class DataManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();  // Сохраняем изменения
+        GameManager.Instance.npcOldState = 0;
+        GameManager.Instance.npcNewState = 0;
+        GameManager.Instance.dayNumber = 0;
         Debug.Log("Все сохранённые данные удалены!");
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EndDayTest : MonoBehaviour, IInteractable
 {
+
+    [SerializeField] PlayerPhotoMode photoMode;
     //// Start is called before the first frame update
     //void Start()
     //{
@@ -19,8 +21,13 @@ public class EndDayTest : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        GameManager.Instance.EndDay(true);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+        bool isGoodPhoto = photoMode.goodPhoto;
+        print(isGoodPhoto);
+        //проверка если фотка у игрока
+        if (isGoodPhoto)
+            GameManager.Instance.EndDay(true);
+            //по дефолту поставил true для проверки. Перейди по функции для просмотра большей информации.
     }
 
 }

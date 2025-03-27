@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ¬ зависимости от новостей мен€ет параметры npcOldState и npcNewState. ј так же сохран€ет данные и перезагружает уровень.
+    /// </summary>
+    /// <param name="goodNews">≈сли True, то настроение повышаетс€, если false, то настроение понижаетс€</param>
     public void EndDay(bool goodNews)
     {
         dayNumber++;
@@ -46,6 +51,7 @@ public class GameManager : MonoBehaviour
             npcNewState--;
 
         DataManager.Instance.SaveData();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
