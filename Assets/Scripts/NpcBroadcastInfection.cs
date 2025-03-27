@@ -12,18 +12,24 @@ public class NpcBroadcastInfection : MonoBehaviour
     [SerializeField] public int npcOldState;
     [SerializeField] public int npcNewState;
 
-    [SerializeField] SpriteRenderer sr;
+    [SerializeField] SpriteRenderer srHead;
+    [SerializeField] SpriteRenderer srBody;
+    [SerializeField] SpriteRenderer srEmotion;
+
     private CircleCollider2D cc;
 
     // Start is called before the first frame update
     void Start()
     {
-        npcOldState = GlobalVariables.Instance.npcOldState;
-        npcNewState = NewsPaper ? GlobalVariables.Instance.npcNewState : npcOldState;
+        npcOldState = GameManager.Instance.npcOldState;
+        npcNewState = NewsPaper ? GameManager.Instance.npcNewState : npcOldState;
+        if (!NewsPaper)
+        {
+            ChangeSprite(npcOldState);
+        }
 
         cc = GetComponent<CircleCollider2D>();
         cc.radius = interactRange;
-        //ChangeSprite();
     }
 
 
@@ -39,14 +45,34 @@ public class NpcBroadcastInfection : MonoBehaviour
         {
             Debug.Log($"Обновление состояния от {hit.gameObject.name}");
             npcNewState = otherNpc.npcNewState;
-            ChangeSprite();
+            ChangeSprite(npcNewState);
         }
     }
 
-    void ChangeSprite()
+    private int Abs(int x)
     {
-        sr.sprite = GlobalVariables.Instance.models[npcNewState];
+        if (x < 0)
+            return -x;
+        return x;
     }
+
+    private void ChangeSprite(int npcState)
+    {
+        srHead.color = GameManager.Instance.colors[Abs(npcState)];
+        srBody.color = GameManager.Instance.colors[Abs(npcState)];
+
+        int index = npcState switch
+        {
+            < -1 => 0,
+            > 1 => 2,
+            _ => 1
+        };
+
+        srEmotion.sprite = GameManager.Instance.emotions[index];
+
+        //sr.sprite = GlobalVariables.Instance.models[npcNewState];
+    }
+    
 
     private void OnDrawGizmos()
     {

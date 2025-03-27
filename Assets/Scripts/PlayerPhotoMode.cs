@@ -7,10 +7,12 @@ public class PlayerPhotoMode : MonoBehaviour
     [SerializeField] float maxDistance = 5f;
     [SerializeField] float angle = 30f;
     [SerializeField] LayerMask targetLayer;
-    [SerializeField] SpriteRenderer sr;
+    
 
-    private bool goodPhoto = false;
+
+    public bool goodPhoto = false;
     private bool isPhotoMode = false;
+    private Animator animator;
     private Transform playerTransform;
     private LineRenderer lineRenderer;
     private PlayerMovement playerMovement;
@@ -19,19 +21,20 @@ public class PlayerPhotoMode : MonoBehaviour
     private void Start()
     {
         LineRendererStart();
+        animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         playerTransform = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
-        sr.enabled = false;
     }
 
     private void Update()
     {
+        animator.SetBool("isPhotoMode", isPhotoMode);
+
         if (isPhotoMode)
         {
             playerMovement.enabled = false;
             rb.velocity = Vector2.zero; // Останавливаем движение
-
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mousePos.x < transform.position.x)
                 playerTransform.localScale = new Vector3(-1, 1, 1);
@@ -46,7 +49,6 @@ public class PlayerPhotoMode : MonoBehaviour
         if (Input.GetButtonDown("Fire2") && !goodPhoto)
         {
             isPhotoMode = true;
-            sr.enabled = true;
             lineRenderer.enabled = true;
             rb.velocity = Vector2.zero; // Останавливаем движение
             print("Fire2 pressed - Photo Mode ON");
@@ -65,7 +67,6 @@ public class PlayerPhotoMode : MonoBehaviour
         if (Input.GetButtonUp("Fire2"))
         {
             isPhotoMode = false;
-            sr.enabled = false;
             lineRenderer.enabled = false;
             print("Fire2 released - Photo Mode OFF");
         }
