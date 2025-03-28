@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    // Singleton для доступа к экземпляру
+    // Singleton пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public static DataManager Instance;
 
-    // Параметры, которые мы будем сохранять
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] int npcOldState;
     [SerializeField] int npcNewState;
     [SerializeField] int dayNumber;
+    [SerializeField] private int diagNumero;
 
-    // Awake вызывается при создании объекта
+    // Awake пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void Awake()
     {
         if (GameManager.Instance != null)
@@ -18,54 +19,59 @@ public class DataManager : MonoBehaviour
             npcOldState = GameManager.Instance.npcOldState;
             npcNewState = GameManager.Instance.npcNewState;
             dayNumber = GameManager.Instance.dayNumber;
+            diagNumero = DiagManager.Instance.DialogueNumero;
         }
-        Debug.Log("Данные в игре! npcOldState: " + npcOldState + ", npcNewState: " + npcNewState + ", dayNumber: " + dayNumber);
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ! npcOldState: " + npcOldState + ", npcNewState: " + npcNewState + ", dayNumber: " + dayNumber);
 
-        // Проверяем, существует ли уже экземпляр. Если нет - создаем его.
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Сохраняем объект при смене сцен
+            DontDestroyOnLoad(gameObject); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         }
         else
         {
-            Destroy(gameObject); // Удаляем дубликат, если экземпляр уже существует
+            Destroy(gameObject); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
     }
 
-    // Метод для сохранения данных
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     public void SaveData()
     {
         PlayerPrefs.SetInt("npcOldState", GameManager.Instance.npcOldState);
         PlayerPrefs.SetInt("npcNewState", GameManager.Instance.npcNewState);
         PlayerPrefs.SetInt("dayNumber", GameManager.Instance.dayNumber);
+        PlayerPrefs.SetInt("diagNumero", DiagManager.Instance.DialogueNumero);
 
-        PlayerPrefs.Save();  // Сохраняем изменения
-        Debug.Log("Данные сохранены! npcOldState: " + GameManager.Instance.npcOldState
+        PlayerPrefs.Save();  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! npcOldState: " + GameManager.Instance.npcOldState
                                 + ", npcNewState: " + GameManager.Instance.npcNewState
-                                + ", dayNumber: " + GameManager.Instance.dayNumber);
+                                + ", dayNumber: " + GameManager.Instance.dayNumber
+                                + ", diagNumero" + DiagManager.Instance.DialogueNumero);
     }
 
-    // Метод для загрузки данных
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     public void LoadData()
     {
-        GameManager.Instance.npcOldState = PlayerPrefs.GetInt("npcOldState", 0);  // 0 — дефолтное значение, если ключа нет
+        GameManager.Instance.npcOldState = PlayerPrefs.GetInt("npcOldState", 0);  // 0 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
         GameManager.Instance.npcNewState = PlayerPrefs.GetInt("npcNewState", 0);
         GameManager.Instance.dayNumber = PlayerPrefs.GetInt("dayNumber", 0);
+        DiagManager.Instance.DialogueNumero = PlayerPrefs.GetInt("diagNumero", 0);
 
-        Debug.Log("Данные загружены! npcOldState: " + GameManager.Instance.npcOldState
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! npcOldState: " + GameManager.Instance.npcOldState
                                 + ", npcNewState: " + GameManager.Instance.npcNewState
-                                + ", dayNumber: " + GameManager.Instance.dayNumber);
+                                + ", dayNumber: " + GameManager.Instance.dayNumber
+                                + ", diagNumero" + DiagManager.Instance.DialogueNumero);
     }
 
-    // Метод для удаления всех данных
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     public void DeleteData()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();  // Сохраняем изменения
+        PlayerPrefs.Save();  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         GameManager.Instance.npcOldState = 0;
         GameManager.Instance.npcNewState = 0;
         GameManager.Instance.dayNumber = 0;
-        Debug.Log("Все сохранённые данные удалены!");
+        Debug.Log("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
     }
 }

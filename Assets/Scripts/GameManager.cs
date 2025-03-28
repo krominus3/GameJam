@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public int npcNewState = 0;
     public int dayNumber = 0;
 
+    public bool IsGoodNews;
+
     
     private static GameManager instance;
     public static GameManager Instance
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-        //это временная строчка. нужна для удаления данных сохранения, чтобы проверять работоспособность.
+        //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         //DataManager.Instance.LoadData();
         
         if (instance != null && instance != this)
@@ -38,14 +40,14 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// В зависимости от новостей меняет параметры npcOldState и npcNewState. А так же сохраняет данные и перезагружает уровень.
+    /// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ npcOldState пїЅ npcNewState. пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
-    /// <param name="goodNews">Если True, то настроение повышается, если false, то настроение понижается</param>
-    public void EndDay(bool goodNews)
+    /// <param name="goodNews">пїЅпїЅпїЅпїЅ True, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ false, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</param>
+    public void EndDay()
     {
         dayNumber++;
         npcOldState = npcNewState;
-        if (goodNews)
+        if (IsGoodNews)
             npcNewState++;
         else
             npcNewState--;

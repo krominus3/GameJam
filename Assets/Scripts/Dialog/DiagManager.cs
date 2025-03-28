@@ -57,6 +57,7 @@ public class DiagManager : MonoBehaviour
         dialogueUI.SetActive(true);
         UpdateDialogueUI();
     }
+    
 
     private void UpdateDialogueUI()
     {
@@ -76,6 +77,11 @@ public class DiagManager : MonoBehaviour
 
     private void SelectOption(DialogueOption option)
     {
+        if (option.Affection == -1)
+            GameManager.Instance.IsGoodNews = false;
+        if (option.Affection == 1)
+            GameManager.Instance.IsGoodNews = true;
+        
         if (option.isExitOption)
         {
             EndDialogue();
