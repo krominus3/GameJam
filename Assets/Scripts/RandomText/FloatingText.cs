@@ -19,7 +19,7 @@ public class FloatingText : MonoBehaviour
     public bool isEventCharacter = false;
 
     [Header("References")]
-    private Canvas targetCanvas;
+    [SerializeField] private Canvas targetCanvas;
     private Camera mainCamera;
     private float lastSaid;
 
