@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent PhraseCall;
 
-    
+    public int DialogueNumero;
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -57,7 +57,9 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (Character != null)
+        if (scene.name != "MainMenu")
+        {
+            if (Character != null)
         {
             Destroy(Character);
         }
@@ -65,6 +67,8 @@ public class GameManager : MonoBehaviour
             Character = Instantiate(Characters[Instance.dayNumber]);
 
         Debug.Log(Characters[Instance.dayNumber]);
+        }
+    
     }
 
 

@@ -40,6 +40,7 @@ public class DiagManager : MonoBehaviour
 
     private void Awake()
     {
+        DialogueNumero = GameManager.Instance.DialogueNumero;
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         npcDiagComponent.dialogueData = Dialgs[DialogueNumero];
@@ -52,6 +53,7 @@ public class DiagManager : MonoBehaviour
 
     public void NextDiag()
     {
+        GameManager.Instance.DialogueNumero += 1;
         DialogueNumero += 1;
     }
 
