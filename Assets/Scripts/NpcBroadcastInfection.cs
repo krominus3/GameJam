@@ -18,6 +18,8 @@ public class NpcBroadcastInfection : MonoBehaviour
 
     private CircleCollider2D cc;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,10 +42,13 @@ public class NpcBroadcastInfection : MonoBehaviour
         NpcBroadcastInfection otherNpc = hit.GetComponent<NpcBroadcastInfection>();
         if (otherNpc == null) return;
 
-        // Если текущее состояние не изменилось, но у другого NPC есть новое состояние — принимаем его
+        if (otherNpc.gameObject.name != "gazeta")
+            otherNpc.GetComponent<FloatingText>().SpawnFloatingText();
+
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ NPC пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
         if (npcNewState == npcOldState && otherNpc.npcNewState != npcNewState)
         {
-            Debug.Log($"Обновление состояния от {hit.gameObject.name}");
+            Debug.Log($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ {hit.gameObject.name}");
             npcNewState = otherNpc.npcNewState;
             ChangeSprite(npcNewState);
         }

@@ -34,7 +34,7 @@ public class PlayerPhotoMode : MonoBehaviour
         if (isPhotoMode)
         {
             playerMovement.enabled = false;
-            rb.velocity = Vector2.zero; // Останавливаем движение
+            rb.velocity = Vector2.zero; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mousePos.x < transform.position.x)
                 playerTransform.localScale = new Vector3(-1, 1, 1);
@@ -50,7 +50,7 @@ public class PlayerPhotoMode : MonoBehaviour
         {
             isPhotoMode = true;
             lineRenderer.enabled = true;
-            rb.velocity = Vector2.zero; // Останавливаем движение
+            rb.velocity = Vector2.zero; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             print("Fire2 pressed - Photo Mode ON");
         }
 
@@ -102,6 +102,7 @@ public class PlayerPhotoMode : MonoBehaviour
                 if (dot > cosAngle)
                 {
                     goodPhoto = true;
+                    DiagManager.Instance.NextDiag();
                     print("Good photo detected!");
                     return;
                 }

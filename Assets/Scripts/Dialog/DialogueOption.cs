@@ -7,4 +7,6 @@ public class DialogueOption
     public string targetNodeID;
     public bool isExitOption;
     public int Affection;
+
+    public bool EndsDay = false;
 }

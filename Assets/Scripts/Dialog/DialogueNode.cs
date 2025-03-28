@@ -15,6 +15,4 @@ public class DialogueNode
     [Header("Options")]
     public List<DialogueOption> options = new List<DialogueOption>();
     
-    [Header("Events")]
-    public UnityEvent onNodeEnter;
 }

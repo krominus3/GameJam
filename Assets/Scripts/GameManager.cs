@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour
     public int dayNumber = 0;
 
     public bool IsGoodNews;
+
+    private float LastPhraseCall;
+
+    public UnityEvent PhraseCall;
 
     
     private static GameManager instance;
@@ -54,6 +59,15 @@ public class GameManager : MonoBehaviour
 
         DataManager.Instance.SaveData();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    private void Update()
+    {
+        if (Time.time - LastPhraseCall <= 3)
+        {
+            LastPhraseCall = Time.time;
+            PhraseCall.Invoke();
+        }
     }
 
 }

@@ -50,6 +50,11 @@ public class DiagManager : MonoBehaviour
         DialogueNumero = id;
     }
 
+    public void NextDiag()
+    {
+        DialogueNumero += 1;
+    }
+
     public void StartDialogue(DialogueData dialogue)
     {
         _currentDialogue = dialogue;
@@ -72,7 +77,6 @@ public class DiagManager : MonoBehaviour
             button.GetComponent<Button>().onClick.AddListener(() => SelectOption(option));
         }
 
-        _currentNode.onNodeEnter.Invoke();
     }
 
     private void SelectOption(DialogueOption option)
@@ -82,6 +86,13 @@ public class DiagManager : MonoBehaviour
         if (option.Affection == 1)
             GameManager.Instance.IsGoodNews = true;
         
+        if (option.EndsDay == true)
+        {
+            EndDialogue();
+            GameManager.Instance.EndDay();
+            return;
+        }
+
         if (option.isExitOption)
         {
             EndDialogue();
