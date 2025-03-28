@@ -59,12 +59,15 @@ public class DataManager : MonoBehaviour
         GameManager.Instance.npcOldState = PlayerPrefs.GetInt("npcOldState", 0);  // 0 � ��������� ��������, ���� ����� ���
         GameManager.Instance.npcNewState = PlayerPrefs.GetInt("npcNewState", 0);
         GameManager.Instance.dayNumber = PlayerPrefs.GetInt("dayNumber", 0);
-        DiagManager.Instance.DialogueNumero = PlayerPrefs.GetInt("diagNumero", 0);
+        if (DiagManager.Instance)
+        {
+            DiagManager.Instance.DialogueNumero = PlayerPrefs.GetInt("diagNumero", 0);
+        }
 
         Debug.Log("������ ���������! npcOldState: " + GameManager.Instance.npcOldState
                                 + ", npcNewState: " + GameManager.Instance.npcNewState
-                                + ", dayNumber: " + GameManager.Instance.dayNumber
-                                + ", diagNumero" + DiagManager.Instance.DialogueNumero);
+                                + ", dayNumber: " + GameManager.Instance.dayNumber);
+                                //+ ", diagNumero" + DiagManager.Instance.DialogueNumero);
     }
 
     // ����� ��� �������� ���� ������

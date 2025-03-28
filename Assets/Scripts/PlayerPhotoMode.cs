@@ -7,6 +7,8 @@ public class PlayerPhotoMode : MonoBehaviour
     [SerializeField] float maxDistance = 5f;
     [SerializeField] float angle = 30f;
     [SerializeField] LayerMask targetLayer;
+
+    [SerializeField] AudioClip cameraClick;
     
 
 
@@ -87,6 +89,7 @@ public class PlayerPhotoMode : MonoBehaviour
     private void TryMakePhoto()
     {
         print("Make photo");
+        SoundManager.Instance.PlaySFX(cameraClick);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = transform.position.z;
         Vector2 direction = (mousePos - transform.position).normalized;
