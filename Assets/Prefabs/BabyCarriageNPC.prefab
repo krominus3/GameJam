@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 5486318034846729789}
   m_Layer: 6
   m_Name: BabyCarriageNPC
-  m_TagString: Untagged
+  m_TagString: Sensation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   displayDuration: 4
   fadeOutDuration: 1
   isEventCharacter: 1
+  targetCanvas: {fileID: 0}
 --- !u!1 &7256293769183974331
 GameObject:
   m_ObjectHideFlags: 0

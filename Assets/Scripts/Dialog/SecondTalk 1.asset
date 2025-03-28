@@ -33,4 +33,4 @@ MonoBehaviour:
       isExitOption: 0
       Affection: -1
       EndsDay: 1
-  startNodeID: 
+  startNodeID: start2

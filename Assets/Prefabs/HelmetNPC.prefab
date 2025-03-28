@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 920535797505188132}
   m_Layer: 6
   m_Name: HelmetNPC
-  m_TagString: Untagged
+  m_TagString: Sensation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

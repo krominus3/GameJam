@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2579782430677006815}
   m_Layer: 6
   m_Name: HomelesNPC
-  m_TagString: Untagged
+  m_TagString: Sensation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

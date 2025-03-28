@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 3158794446579066511}
   m_Layer: 6
   m_Name: GraffitiNPC
-  m_TagString: Untagged
+  m_TagString: Sensation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

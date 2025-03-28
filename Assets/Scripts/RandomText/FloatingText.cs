@@ -70,7 +70,6 @@ public class FloatingText : MonoBehaviour
             else
             {
                 if (GameManager.Instance.dayNumber == 6)
-                if (true)
                 {
                     textInstance.text = Neutral;
                 }
@@ -91,7 +90,7 @@ public class FloatingText : MonoBehaviour
 
         CanvasGroup canvasGroup = textInstance.gameObject.AddComponent<CanvasGroup>();
         canvasGroup.alpha = 0f;
-
+        lastSaid = Time.time;
         UpdateTextPosition(textInstance);
         
         Sequence textSequence = DOTween.Sequence();
@@ -105,7 +104,6 @@ public class FloatingText : MonoBehaviour
         textSequence.OnComplete(() => 
         {
             Destroy(textInstance.gameObject);
-            lastSaid = Time.time;
         });
 
         textSequence.OnUpdate(() => UpdateTextPosition(textInstance));

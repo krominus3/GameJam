@@ -11,6 +11,16 @@ public class GameManager : MonoBehaviour
     public List<Sprite> emotions;
     public List<Color> colors;
 
+    [SerializeField] private GameObject[] Characters;
+
+    /*private struct Characters 
+    {
+        GameObject Character;
+        Vector3 Position;
+    }*/
+
+    private GameObject Character;
+
     public int npcOldState = 0;
     public int npcNewState = 0;
     public int dayNumber = 0;
@@ -24,7 +34,6 @@ public class GameManager : MonoBehaviour
     
     private static GameManager instance;
     public static GameManager Instance
-
     {
         get { return instance; }
     }
@@ -42,7 +51,23 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (Character != null)
+        {
+            Destroy(Character);
+        }
+        if (npcOldState >= npcNewState)
+            Character = Instantiate(Characters[Instance.dayNumber]);
+
+        Debug.Log(Characters[Instance.dayNumber]);
+    }
+
+
 
     /// <summary>
     /// � ����������� �� �������� ������ ��������� npcOldState � npcNewState. � ��� �� ��������� ������ � ������������� �������.

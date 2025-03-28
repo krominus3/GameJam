@@ -17,6 +17,7 @@ public class NpcBroadcastInfection : MonoBehaviour
     [SerializeField] SpriteRenderer srEmotion;
 
     private CircleCollider2D cc;
+    [SerializeField] private bool isMainHero;
 
 
 
@@ -42,7 +43,7 @@ public class NpcBroadcastInfection : MonoBehaviour
         NpcBroadcastInfection otherNpc = hit.GetComponent<NpcBroadcastInfection>();
         if (otherNpc == null) return;
 
-        if (otherNpc.gameObject.name != "gazeta")
+        if (otherNpc.gameObject.name != "gazeta" && otherNpc.GetComponent<FloatingText>().isEventCharacter == false && isMainHero == false)
             otherNpc.GetComponent<FloatingText>().SpawnFloatingText();
 
         // ���� ������� ��������� �� ����������, �� � ������� NPC ���� ����� ��������� � ��������� ���
