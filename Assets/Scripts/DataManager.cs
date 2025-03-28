@@ -19,6 +19,9 @@ public class DataManager : MonoBehaviour
             npcOldState = GameManager.Instance.npcOldState;
             npcNewState = GameManager.Instance.npcNewState;
             dayNumber = GameManager.Instance.dayNumber;
+        }
+        if (DiagManager.Instance != null)
+        { 
             diagNumero = DiagManager.Instance.DialogueNumero;
         }
         Debug.Log("������ � ����! npcOldState: " + npcOldState + ", npcNewState: " + npcNewState + ", dayNumber: " + dayNumber);
