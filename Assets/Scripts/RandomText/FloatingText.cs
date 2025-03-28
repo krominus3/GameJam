@@ -53,9 +53,7 @@ public class FloatingText : MonoBehaviour
             return;
         }
         
-
         TextMeshProUGUI textInstance = Instantiate(textPrefab, targetCanvas.transform);
-
 
         if (!isEventCharacter)
         {
@@ -73,7 +71,11 @@ public class FloatingText : MonoBehaviour
                 {
                     textInstance.text = Neutral;
                 }
-                else return;
+                else 
+                {
+                    Destroy(textInstance.gameObject);
+                    return;
+                }
             }
         }
         else
@@ -82,6 +84,7 @@ public class FloatingText : MonoBehaviour
 
             if (Random.Range(0, 2) == 0)
             {
+                Destroy(textInstance.gameObject);
                 return;
             }
 
