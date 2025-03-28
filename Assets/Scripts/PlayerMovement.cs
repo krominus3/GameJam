@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         //moveLimiter = (horizontal != 0 && vertical != 0) ? moveLimiterMin : moveLimiterMax;
 
         Vector2 movement = new Vector2(horizontal, vertical).normalized * runSpeed;
-        body.MovePosition(body.position + movement * Time.fixedDeltaTime); // Двигаем с учетом коллизий
+        body.MovePosition(body.position + movement * Time.fixedDeltaTime); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
 
